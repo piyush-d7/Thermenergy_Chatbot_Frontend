@@ -68,7 +68,7 @@ export default function Chatbot() {
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
 
     try {
-      const response = await fetch(`${API_URL}/chat`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -102,7 +102,7 @@ export default function Chatbot() {
 
   const handleSubmitLead = async (leadData) => {
     try {
-      const response = await fetch(`${API_URL}/leads`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(leadData),
