@@ -35,7 +35,7 @@ export default function Chatbot() {
   useEffect(() => {
     const getGreeting = async () => {
       try {
-        const response = await fetch(`${API_URL}/greeting?page_context=${pageContext}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/greeting?page_context=${pageContext}`);
         const data = await response.json();
         setInitialGreeting(data.greeting);
         // Show the teaser after a short delay
