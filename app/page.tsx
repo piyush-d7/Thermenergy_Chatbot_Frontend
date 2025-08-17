@@ -3,10 +3,9 @@ import Chatbot from '@/components/Chatbot';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+      {/* <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <h1 className="text-4xl font-bold">Thermenergy Website Content</h1>
-        {/* Your other page content goes here */}
-      </div>
+      </div> */}
 
       {/* This adds the chatbot to your page */}
       <Chatbot />

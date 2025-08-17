@@ -124,7 +124,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-5 right-5 z-50 pointer-events-auto">
       {isOpen ? (
         <ChatWindow
           messages={messages}
