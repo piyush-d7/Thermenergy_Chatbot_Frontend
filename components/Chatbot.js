@@ -7,7 +7,7 @@ import ChatIcon from './ChatIcon';
 import ChatWindow from './ChatWindow';
 
 // The base URL for your FastAPI backend
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function getPageContextFromPath(path) {
   // If it's the homepage, return 'homepage'
@@ -35,7 +35,7 @@ export default function Chatbot() {
   useEffect(() => {
     const getGreeting = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/greeting?page_context=${pageContext}`);
+        const response = await fetch(`${API_URL}/greeting?page_context=${pageContext}`);
         const data = await response.json();
         setInitialGreeting(data.greeting);
         // Show the teaser after a short delay
@@ -68,7 +68,7 @@ export default function Chatbot() {
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
+      const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -102,7 +102,7 @@ export default function Chatbot() {
 
   const handleSubmitLead = async (leadData) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}leads`, {
+      const response = await fetch(`${API_URL}leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(leadData),
