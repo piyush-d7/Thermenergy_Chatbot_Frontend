@@ -23,7 +23,7 @@ export default function ChatWindow({ messages, onSendMessage, showLeadForm, onCl
   };
 
   return (
-    <div className="w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col">
+    <div className="w-80 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col">
       {/* Header */}
       <div className="bg-blue-600 text-white p-4 flex justify-between items-center rounded-t-lg">
         <h3 className="font-bold text-lg">Thermenergy Assistant</h3>
@@ -49,7 +49,7 @@ export default function ChatWindow({ messages, onSendMessage, showLeadForm, onCl
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               placeholder="Type your message..."
-              className="flex-grow border rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow border rounded-lg px-2 py-2 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               onClick={handleSend}

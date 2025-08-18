@@ -1,4 +1,4 @@
-'use client'; // Required for using browser-only features like document
+// 'use client'; // Required for using browser-only features like document
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
