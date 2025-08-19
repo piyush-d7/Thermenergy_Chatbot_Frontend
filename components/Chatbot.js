@@ -48,7 +48,7 @@ export default function Chatbot({ pageContext }) {
   
   // Now, derive the pageContext from the parent's URL
   // const pageContext = parentUrl ? getPageContextFromUrl(parentUrl) : 'default';
-  print("Page context:", pageContext);
+  console.log("Page context:", pageContext);
   // --- Fetch the initial greeting when the chat opens ---
   useEffect(() => {
     const getGreeting = async () => {
