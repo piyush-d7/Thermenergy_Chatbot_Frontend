@@ -10,17 +10,17 @@ import ChatWindow from './ChatWindow';
 // The base URL for your FastAPI backend
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function getPageContextFromUrl(url) {
-  try {
-    const path = new URL(url).pathname;
-    if (path === '/') return 'homepage';
-    const pathParts = path.split('/').filter(part => part);
-    return pathParts[pathParts.length - 1] || 'default';
-  } catch (error) {
-    // If the URL is invalid for some reason, fall back to default
-    return 'default';
-  }
-}
+// function getPageContextFromUrl(url) {
+//   try {
+//     const path = new URL(url).pathname;
+//     if (path === '/') return 'homepage';
+//     const pathParts = path.split('/').filter(part => part);
+//     return pathParts[pathParts.length - 1] || 'default';
+//   } catch (error) {
+//     // If the URL is invalid for some reason, fall back to default
+//     return 'default';
+//   }
+// }
 // function getPageContextFromPath(path) {
 //   // If it's the homepage, return 'homepage'
 //   if (path === '/') {
@@ -31,7 +31,7 @@ function getPageContextFromUrl(url) {
 //   return pathParts[pathParts.length - 1] || 'default'; // Return the last part or 'default' if empty
 //   }
 
-export default function Chatbot() {
+export default function Chatbot({ pageContext }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [sessionId, setSessionId] = useState(null);
@@ -43,11 +43,11 @@ export default function Chatbot() {
   // const pathname = usePathname();
   // const pageContext = getPageContextFromPath(pathname);
 
-  const searchParams = useSearchParams();
-  const parentUrl = searchParams.get('parentUrl'); // Get the value of the 'parentUrl' parameter
+  // const searchParams = useSearchParams();
+  // const parentUrl = searchParams.get('parentUrl'); // Get the value of the 'parentUrl' parameter
   
   // Now, derive the pageContext from the parent's URL
-  const pageContext = parentUrl ? getPageContextFromUrl(parentUrl) : 'default';
+  // const pageContext = parentUrl ? getPageContextFromUrl(parentUrl) : 'default';
   print("Page context:", pageContext);
   // --- Fetch the initial greeting when the chat opens ---
   useEffect(() => {

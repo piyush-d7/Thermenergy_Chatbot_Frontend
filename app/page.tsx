@@ -1,5 +1,6 @@
 import Chatbot from '@/components/Chatbot';
-
+import { Suspense } from 'react';
+import ChatbotWrapper from '@/components/ChatbotWrapper';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -8,7 +9,10 @@ export default function Home() {
       </div> */}
 
       {/* This adds the chatbot to your page */}
-      <Chatbot />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ChatbotWrapper />
+      </Suspense>
+      {/* <Chatbot /> */}
     </main>
   );
 }
