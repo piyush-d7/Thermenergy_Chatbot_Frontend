@@ -23,5 +23,5 @@ export default function ChatbotWrapper() {
   const pageContext = parentUrl ? getPageContextFromUrl(parentUrl) : 'default';
 
   // Pass the extracted URL down to the main Chatbot component as a prop.
-  return <Chatbot parentUrl={pageContext} />;
+  return <Chatbot pageContext={pageContext} />;
 }

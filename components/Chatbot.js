@@ -31,6 +31,12 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 //   return pathParts[pathParts.length - 1] || 'default'; // Return the last part or 'default' if empty
 //   }
 
+function postMessageToParent(message) {
+  // The '*' means we allow sending to any parent, which is fine for this use case.
+  // For higher security, you could replace '*' with the specific Divi site URL.
+  window.parent.postMessage(message, '*');
+}
+
 export default function Chatbot({ pageContext }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -39,6 +45,13 @@ export default function Chatbot({ pageContext }) {
   const [initialGreeting, setInitialGreeting] = useState('');
   const [showTeaser, setShowTeaser] = useState(false);
 
+  useEffect(() => {
+    if (isOpen) {
+      postMessageToParent('chatbot-open');
+    } else {
+      postMessageToParent('chatbot-close');
+    }
+  }, [isOpen]);
   // // --- NEW: Get the current path from the router ---
   // const pathname = usePathname();
   // const pageContext = getPageContextFromPath(pathname);
