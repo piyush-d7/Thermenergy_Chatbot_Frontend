@@ -155,7 +155,7 @@ export default function Chatbot({ pageContext }) {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 pointer-events-auto">
+    <div className="absolute bottom-5 right-5 z-50">
       {isOpen ? (
         <ChatWindow
           messages={messages}
