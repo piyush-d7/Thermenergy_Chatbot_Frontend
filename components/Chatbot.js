@@ -48,10 +48,12 @@ export default function Chatbot({ pageContext }) {
   useEffect(() => {
     if (isOpen) {
       postMessageToParent('chatbot-open');
+    } else if (showTeaser) {
+      postMessageToParent('chatbot-teaser-open');
     } else {
       postMessageToParent('chatbot-close');
     }
-  }, [isOpen]);
+  }, [isOpen, showTeaser]);
   // // --- NEW: Get the current path from the router ---
   // const pathname = usePathname();
   // const pageContext = getPageContextFromPath(pathname);
