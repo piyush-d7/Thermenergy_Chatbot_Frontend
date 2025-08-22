@@ -7,8 +7,10 @@ import { useSearchParams } from 'next/navigation';
 import ChatIcon from './ChatIcon';
 import ChatWindow from './ChatWindow';
 
+
 // The base URL for your FastAPI backend
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+// const API_URL = "http://127.0.0.1:8000"
 
 // function getPageContextFromUrl(url) {
 //   try {
@@ -39,7 +41,7 @@ function postMessageToParent(message) {
 
 export default function Chatbot({ pageContext }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([{ role: 'model', content: 'Connecting...', isLoading: true }]);
   const [sessionId, setSessionId] = useState(null);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [initialGreeting, setInitialGreeting] = useState('');
@@ -72,9 +74,13 @@ export default function Chatbot({ pageContext }) {
         const data = await response.json();
         setInitialGreeting(data.greeting);
         // Show the teaser after a short delay
+
+        setMessages([{ role: 'model', content: data.greeting, isLoading: false }]);
+
         setTimeout(() => setShowTeaser(true), 1500); 
       } catch (error) {
         console.error("Failed to fetch greeting:", error);
+        setMessages([{ role: 'model', content: "Sorry, I'm having trouble connecting.", isLoading: false }]);
       }
     };
     getGreeting();
@@ -82,9 +88,9 @@ export default function Chatbot({ pageContext }) {
 
   const handleOpenChat = () => {
     // When opening the chat, populate the message list with the greeting
-    if (messages.length === 0 && initialGreeting) {
-      setMessages([{ role: 'model', content: initialGreeting }]);
-    }
+    // if (messages.length === 0 && initialGreeting) {
+    //   setMessages([{ role: 'model', content: initialGreeting }]);
+    // }
     setIsOpen(true);
     setShowTeaser(false); // Hide the teaser when the main window opens
   };

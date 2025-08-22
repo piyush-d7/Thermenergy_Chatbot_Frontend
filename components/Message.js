@@ -1,4 +1,4 @@
-export default function Message({ role, content }) {
+export default function Message({ role, content, isLoading }) {
   const isUser = role === 'user';
   const senderName = isUser ? 'You' : 'Matthew The HVAC Hero';
 
@@ -16,9 +16,16 @@ export default function Message({ role, content }) {
         {senderName}
       </span>
       {/* Message Bubble */}
-      <div className={`${bubbleClass} ${isUser ? userBubbleStyles : modelBubbleStyles}`}>
-        {content}
+      <div className={`${bubbleClass} ${isUser ? userBubbleStyles : modelBubbleStyles} flex items-center space-x-2`}>
+        {content} {isLoading && (
+          <div className="w-6 h-6 border-2 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
+        )}
       </div>
+
+      {/* {isLoading && (
+          <div className="w-4 h-4 border-2 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
+        )} */}
+
     </div>
   );
 }

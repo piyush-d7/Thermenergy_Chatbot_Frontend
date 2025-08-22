@@ -12,7 +12,7 @@ export default function MessageList({ messages }) {
   return (
     <div className="space-y-4">
       {messages.map((msg, index) => (
-        <Message key={index} role={msg.role} content={msg.content} />
+        <Message key={index} role={msg.role} content={msg.content} isLoading={msg.isLoading} />
       ))}
       {/* This empty div is the target for our auto-scroll */}
       <div ref={endOfMessagesRef} />
